@@ -1,14 +1,16 @@
-
-
 function outer() {
 
-      var age = prompt("What is Your Ages?");
+          var age = prompt("What is Your Ages? or press 'exit' to stop!");
 
-      if ( isNaN(age) || age == "" ){
-            inner();
-      } else {
-            getAge(age) ;
-      }
+
+          if (age === "exit") {
+            console.log("exit");
+            document.getElementById("myDiv").innerHTML = "Thanks for enter your age!!";
+          } else if  (isNaN(age) || age == "" ){
+                inner();
+          } else  {
+                getAge(age) ;
+          }
 
       function inner() {
             var age = prompt("Please enter numbers?");
@@ -22,17 +24,21 @@ function outer() {
 };
 
 function getAge(age) {
+
   var text = "You are old enough to ";
   var action = {16: "drive!", 17: "drive!", 18: "drive and vote!", "other": "drive, vote and drink!!"};
 
   if (age == 16 || age == 17 || age == 18) {
-    var x = age;
+        var x = age;
         alert( text + action[x]);
+        outer();
   } else if (age < 16) {
         alert( "YOU ARE SO YOUNG!!");
+        outer();
   } else {
         var x = "other";
         alert( text + action[x]);
+        outer();
   }
 
 };
