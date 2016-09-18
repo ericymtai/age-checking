@@ -1,15 +1,41 @@
-console.log("hello");
 
-var age = prompt("What is Your Ages?");
 
-age = parseInt(age);
+function outer() {
 
-if (age >= 19) {
-  alert("You are old enough to drink!");
-} else if (age >= 18) {
-  alert("You are old enough to vote!");
-} else if ( age >= 16) {
-  alert("You are old enough to drive!");
-} else {
-  alert("Sorry! Youare so yound!");
-}
+      var age = prompt("What is Your Ages?");
+
+      if ( isNaN(age) || age == "" ){
+            inner();
+      } else {
+            getAge(age) ;
+      }
+
+      function inner() {
+            var age = prompt("Please enter numbers?");
+
+            if ( isNaN(age) || age == "" ) {
+                  inner();
+            } else {
+                  getAge(age) ;
+            }
+      };
+};
+
+function getAge(age) {
+  var text = "You are old enough to ";
+  var action = {16: "drive!", 17: "drive!", 18: "drive and vote!", "other": "drive, vote and drink!!"};
+
+  if (age == 16 || age == 17 || age == 18) {
+    var x = age;
+        alert( text + action[x]);
+  } else if (age < 16) {
+        alert( "YOU ARE SO YOUNG!!");
+  } else {
+        var x = "other";
+        alert( text + action[x]);
+  }
+
+};
+
+
+outer();
