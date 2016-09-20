@@ -1,56 +1,65 @@
-function outer() {
+function ageCheck() {
 
-          var age = prompt("What is Your Ages? or press 'exit' to stop!");
 
-          if (age === "exit") {
-            console.log("exit");
-            // document.getElementById("Div").innerHTML = "Thanks for Checking your age!!";
-          } else if  (isNaN(age) || age == "" ){
-                inner();
-          } else  {
-                getAge(age) ;
+//     while ( typeof age != "number" || isNaN( age ) == true ) {
+//                
+//           age = Number( prompt( "Please enter your age" ) );
+
+//           getAge( age );
+//                
+//     }
+
+    while ( typeof age != "string" || isNaN( age ) != false ) {
+               
+          age = prompt( "Please enter your age" ) ;
+
+          getAge( age );
+               
+    }
+
+    function getAge( age ) {
+
+          var text = "You are old enough to ";
+
+          var action = { 16: "drive!", 17: "drive!", 18: "drive and vote!", "other": "drive, vote and drink!!" };
+
+          if ( isNaN( age ) == true ) {
+                alert( "Enter number please!!" );
+
+          } else if ( age > 100 ) {
+                alert( "CANNOT BE OVER 100!!" );
+
+          } else if ( age == '' ) {
+                alert( "You haven't enter your age yet!!" );
+
+          } else if ( age < 16 ) {
+                alert( "YOU ARE SO YOUNG!!" );
+
+          } else if ( age == 16 || age == 17 || age == 18 ) {
+                var x = age;
+                alert( text + action[x] );
+
+          }  else {
+                var x = "other";
+                alert( text + action[x] );
+
           }
 
-          function inner() {
-                var age = prompt("Please enter numbers?");
+          var records = [];
 
-                if ( isNaN(age) || age == "" ) {
-                      inner();
-                } else {
-                      getAge(age) ;
-                }
-          };
-};
+          records.push( age );
 
-function getAge(age) {
+          node = document.createElement( "LI" );
 
-    var text = "You are old enough to ";
-    var action = {16: "drive!", 17: "drive!", 18: "drive and vote!", "other": "drive, vote and drink!!"};
+          for ( var i=0; i<=records.length-1; i++ ) {
 
-    if (age == 16 || age == 17 || age == 18) {
-          var x = age;
-          alert( text + action[x]);
-          outer();
-    } else if (age < 16) {
-          alert( "YOU ARE SO YOUNG!!");
-          outer();
-    } else {
-          var x = "other";
-          alert( text + action[x]);
-          outer();
-    }
+              textnode = document.createTextNode( "Age: " + records[i]  + " checked." );
+              node.appendChild( textnode );
+              document.getElementById( "recordDiv" ).appendChild( node );
+          }
 
-    var records = [];
-
-    records.push(age);
-    node = document.createElement("LI");
-
-    for (var i=0; i<=records.length-1; i++) {
-        textnode = document.createTextNode("Year: " + records[i]  + " checked, ");
-        node.appendChild(textnode);
-        document.getElementById("myDiv").appendChild(node);
-    }
+    };
 
 };
 
-outer();
+ageCheck();
